@@ -8,6 +8,7 @@ import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.sql.SparkSession;
 import org.apache.spark.storage.StorageLevel;
 
 import scala.Tuple2;
@@ -31,12 +32,21 @@ public class SparkRDDTest {
 	    scf.setAppName("RDD");
 	    scf.setMaster("local");
 	    
+	    
 	    JavaSparkContext jsc = new JavaSparkContext(scf);  
 	    
+	    SparkSession spark = SparkSession.builder().config(scf).getOrCreate();
 	    
+		  //checkpointDir必须先进行RDD持久化
+  		 //设置检查点存放目录，window为例
+       // sc.setCheckpointDir("E:\\check");
+  		jsc.setCheckpointDir("");
 	    JavaRDD<String> str = jsc.textFile("J://Study//Spark//hello.txt").persist(StorageLevel.MEMORY_AND_DISK_SER_2());
 	   // str.cache();
 	    //str.persist(1);
+	  //为pairRDD设置检查点
+	    str.checkpoint();
+	   // Dataframe<String> df =  spark.createDataFrame(str, "");
 	    long startTime = System.currentTimeMillis();
 	    Long num = str.count();
 	    System.out.println(num);

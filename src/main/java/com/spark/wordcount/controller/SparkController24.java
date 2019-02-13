@@ -26,7 +26,7 @@ import scala.Tuple2;
  *
  */
 @Component
-// @RequestMapping("/test/*")
+//@RequestMapping("/test/*")
 @RestController
 public class SparkController24 {
 
@@ -38,7 +38,7 @@ public class SparkController24 {
 	 */
 
 	// @RequestMapping(value="/hello",method=RequestMethod.POST)
-	@RequestMapping(value = "/index", method = RequestMethod.GET)
+	//@RequestMapping(value = "/index", method = RequestMethod.GET)
 	/*
 	 * public String
 	 * bankStatement(@RequestParam(name="projectId",required=true)String

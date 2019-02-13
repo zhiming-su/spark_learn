@@ -40,7 +40,7 @@ public class SparkTransformationTest {
 	 */
 
 	// @RequestMapping(value="/hello",method=RequestMethod.POST)
-	@RequestMapping(value = "/index", method = RequestMethod.GET)
+	//@RequestMapping(value = "/index", method = RequestMethod.GET)
 	/*
 	 * public String
 	 * bankStatement(@RequestParam(name="projectId",required=true)String
