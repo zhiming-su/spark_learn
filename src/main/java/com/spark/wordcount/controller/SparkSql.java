@@ -217,6 +217,7 @@ public class SparkSql {
 	/**
 	 * 
 	 * save方法，对结果进行保存
+	 * 删掉本地spark环境下 的gson2.4.2.jar文件，和spring boot 文件造成了冲突
 	 */
 	public static void saveData(){
 		//SparkConf conf = new SparkConf().setAppName("RDD2DataFrame").setMaster("local");  
@@ -224,6 +225,7 @@ public class SparkSql {
         SparkSession spark = SparkSession.builder().config(conf).getOrCreate();  
 	
 		//file为本地模式，默认是hdfs方式
+        
 		Dataset<Row> srdd = spark.read().json("file:///opt/spark_test/spark_sql/students.json");
 		//srdd.select("id").write().save("file:///opt/spark_test/spark_sql/students.csv");
 		srdd.write().option("header", true).csv("file:///opt/spark_test/spark_sql/students.csv");
