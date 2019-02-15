@@ -13,9 +13,6 @@ import org.apache.spark.api.java.function.Function2;
 import org.apache.spark.api.java.function.PairFunction;
 import org.apache.spark.api.java.function.VoidFunction;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 
 import scala.Function;
 import scala.Tuple2;
@@ -28,7 +25,7 @@ import scala.Tuple2;
  */
 @Component
 // @RequestMapping("/test/*")
-@RestController
+//@RestController
 public class SparkMapLocal {
 
 	/**

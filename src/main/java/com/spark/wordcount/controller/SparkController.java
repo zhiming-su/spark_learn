@@ -13,9 +13,6 @@ import org.apache.spark.api.java.function.Function2;
 import org.apache.spark.api.java.function.PairFunction;
 import org.apache.spark.api.java.function.VoidFunction;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 
 import scala.Tuple2;
 
@@ -26,7 +23,7 @@ import scala.Tuple2;
  */
 @Component
 // @RequestMapping("/test/*")
-@RestController
+//@RestController
 public class SparkController {
 
 	/**
@@ -37,7 +34,7 @@ public class SparkController {
 	 */
 
 	// @RequestMapping(value="/hello",method=RequestMethod.POST)
-	@RequestMapping(value = "/index", method = RequestMethod.GET)
+//	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	/*
 	 * public String
 	 * bankStatement(@RequestParam(name="projectId",required=true)String

@@ -16,7 +16,10 @@ public class Application {
 		SpringApplication.run(Application.class, args);
 		//SparkControllerLocal.sparkConf();
 		//SparkController24.sparkConf();
-		SparkSql.dataFrameFunJson();
+		//SparkSql.dataFrameFunJson();
+		//SparkSql.RddToDataFrame2();
+		//SparkSql.dataFrameFunJson();
+		SparkSql.saveData();
 		//SparkSecondSort.secondSort();
 	}
 }

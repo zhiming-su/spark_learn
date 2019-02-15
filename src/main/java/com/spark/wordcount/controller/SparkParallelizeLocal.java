@@ -9,9 +9,6 @@ import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.Function2;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 
 
 /**
@@ -21,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Component
 // @RequestMapping("/test/*")
-@RestController
+//@RestController
 public class SparkParallelizeLocal {
 
 	/**
