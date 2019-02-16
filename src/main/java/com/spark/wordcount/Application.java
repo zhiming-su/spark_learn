@@ -5,9 +5,7 @@ import java.io.IOException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.spark.wordcount.controller.SparkGroupTopn;
-import com.spark.wordcount.controller.SparkSecondSort;
-import com.spark.wordcount.controller.SparkSql;
+import com.spark.wordcount.controller.SparkSqlHive;
 
 @SpringBootApplication
 public class Application {
@@ -19,7 +17,10 @@ public class Application {
 		//SparkSql.dataFrameFunJson();
 		//SparkSql.RddToDataFrame2();
 		//SparkSql.dataFrameFunJson();
-		SparkSql.saveData();
+		//SparkSql.saveData();
+		//SparkSql.readParquet();
+		//SparkSql.jsonJoin();
+		SparkSqlHive.hiveSql();
 		//SparkSecondSort.secondSort();
 	}
 }

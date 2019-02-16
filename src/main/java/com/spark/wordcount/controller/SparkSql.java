@@ -13,6 +13,7 @@ import org.apache.spark.sql.Encoder;
 import org.apache.spark.sql.Encoders;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.RowFactory;
+import org.apache.spark.sql.SaveMode;
 import org.apache.spark.sql.SparkSession;
 import org.apache.spark.sql.types.DataTypes;
 import org.apache.spark.sql.types.StructField;
@@ -218,6 +219,8 @@ public class SparkSql {
 	 * 
 	 * save方法，对结果进行保存
 	 * 删掉本地spark环境下 的gson2.4.2.jar文件，和spring boot 文件造成了冲突
+	 * SaveMode.Ignore 存储方式
+	 * Append Overwrite ErrorIfExists（默认） Ignore（忽略）
 	 */
 	public static void saveData(){
 		//SparkConf conf = new SparkConf().setAppName("RDD2DataFrame").setMaster("local");  
@@ -227,8 +230,40 @@ public class SparkSql {
 		//file为本地模式，默认是hdfs方式
         
 		Dataset<Row> srdd = spark.read().json("file:///opt/spark_test/spark_sql/students.json");
-		//srdd.select("id").write().save("file:///opt/spark_test/spark_sql/students.csv");
-		srdd.write().option("header", true).csv("file:///opt/spark_test/spark_sql/students.csv");
+		srdd.select("id").write().save("file:///opt/spark_test/spark_sql/students.csv");
+		srdd.write().mode(SaveMode.Ignore).option("header", true).csv("file:///opt/spark_test/spark_sql/students.csv");
         spark.close();
+	}
+	
+	/**
+	 * 加载parquet数据
+	 */
+	public static void readParquet() {
+		SparkConf conf = new SparkConf().setAppName("RDD2DataFrame");  
+        SparkSession spark = SparkSession.builder().config(conf).getOrCreate();  
+	
+		//file为本地模式，默认是hdfs方式
+        
+		Dataset<Row> srdd = spark.read().parquet("/opt/spark_test/spark_sql/students.csv/part-00000-0da6d00b-5909-4542-8c88-2201dd0731f9-c000.snappy.parquet");
+		srdd.show();
+	}
+	
+	/**
+	 * json jion文件
+	 */
+	public static void jsonJoin() {
+		//SparkConf conf = new SparkConf().setAppName("RDD2DataFrame").setMaster("local");  
+				SparkConf conf = new SparkConf().setAppName("RDD2DataFrame").setMaster("local");  
+		        SparkSession spark = SparkSession.builder().config(conf).getOrCreate();  
+			
+				//file为本地模式，默认是hdfs方式
+		        
+				Dataset<Row> srdd = spark.read().json("J://Study//Spark//students.json");
+				Dataset<Row> srdd1 = spark.read().json("J://Study//Spark//class.json");
+				srdd.createOrReplaceTempView("students");
+				srdd1.createOrReplaceTempView("class");
+				spark.sql("select a.*,b.name as classname from students as a left join class as b on a.id=b.id").show();
+				
+				spark.close();
 	}
 }
