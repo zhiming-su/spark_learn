@@ -69,7 +69,7 @@ public class SparkSql2 {
 	}
 	
 	/**
-	 * rowNumber
+	 * rowNumber 
 	 * 开窗函数
 	 * @throws AnalysisException 
 	 * //使用开窗函数row_number进行查询，查询每个种类销售额前三的产品
