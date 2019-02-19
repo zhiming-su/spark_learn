@@ -2,15 +2,16 @@ package com.spark.wordcount;
 
 import java.io.IOException;
 
+import org.apache.spark.sql.AnalysisException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.spark.wordcount.controller.SparkSqlHive;
+import com.spark.wordcount.controller.SparkSql2;
 
 @SpringBootApplication
 public class Application {
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, AnalysisException {
 		SpringApplication.run(Application.class, args);
 		//SparkControllerLocal.sparkConf();
 		//SparkController24.sparkConf();
@@ -20,7 +21,10 @@ public class Application {
 		//SparkSql.saveData();
 		//SparkSql.readParquet();
 		//SparkSql.jsonJoin();
-		SparkSqlHive.hiveSql();
+		//SparkSqlHive.hiveSql();
+		//SparkSql.dataFrameFunMysql();
+		//SparkSql2.sparkSqlGroupBy();
+		SparkSql2.rowNumberTopN();
 		//SparkSecondSort.secondSort();
 	}
 }
