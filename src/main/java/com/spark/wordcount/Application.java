@@ -6,7 +6,7 @@ import org.apache.spark.sql.AnalysisException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.spark.wordcount.controller.SparkSql2;
+import com.spark.wordcount.controller.SparkSqlUDF;
 
 @SpringBootApplication
 public class Application {
@@ -24,7 +24,7 @@ public class Application {
 		//SparkSqlHive.hiveSql();
 		//SparkSql.dataFrameFunMysql();
 		//SparkSql2.sparkSqlGroupBy();
-		SparkSql2.rowNumberTopN();
+		SparkSqlUDF.myUDF();
 		//SparkSecondSort.secondSort();
 	}
 }
