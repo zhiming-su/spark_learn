@@ -1,18 +1,23 @@
 package com.spark.wordcount;
 
 import java.io.IOException;
+import java.util.concurrent.ExecutionException;
 
 import org.apache.spark.sql.AnalysisException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.spark.wordcount.controller.SparkETLJob;
+import com.spark.wordcount.controller.SparkSql;
 import com.spark.wordcount.controller.SparkSqlUDAF_Use;
+import com.spark.wordcount.controller.SparkSqlUV;
+import com.spark.wordcount.stream.JavaDirectKafkaWordCount;
 
 
 @SpringBootApplication
 public class Application {
 
-	public static void main(String[] args) throws IOException, AnalysisException {
+	public static void main(String[] args) throws IOException, AnalysisException, InterruptedException, ExecutionException {
 		SpringApplication.run(Application.class, args);
 		//SparkControllerLocal.sparkConf();
 		//SparkController24.sparkConf();
@@ -26,7 +31,10 @@ public class Application {
 		//SparkSql.dataFrameFunMysql();
 		//SparkSql2.sparkSqlGroupBy();
 		//SparkSqlUDF.myUDF();
-		SparkSqlUDAF_Use.myUDAF1();
+		//SparkSqlUDAF_Use.myUDAF1();
+		//SparkSqlUV.myFunUV();
+		//SparkETLJob.etlJob();
+		JavaDirectKafkaWordCount.kafkaTest();
 		//SparkSecondSort.secondSort();
 	}
 }

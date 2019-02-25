@@ -179,6 +179,80 @@ public class SparkSql {
 		 * "schema.tablename", connectionProperties);
 		 */
 		// $example off:jdbc_dataset$
+		
+		// here you can run sql query
+		String sql = "(SELECT \r\n" + 
+				"  a.WENJIAN_ID\r\n" + 
+				", a.BAOGAO_LX\r\n" + 
+				", '' as  BAOGAO_LX_BM\r\n" + 
+				", a.BAOGAO_MC\r\n" + 
+				", ''  as BAOGAO_MC_BM\r\n" + 
+				", a.BAOGAO_RQ\r\n" + 
+				", a.XUHAO_X  as XUHAO\r\n" + 
+				", a.ZIDUAN_MC_X as ZIDUAN_MC\r\n" + 
+				", '' as ZIDUAN_BM\r\n" + 
+				", a.BIAO_BZ\r\n" + 
+				", a.ZIDUAN_MC_X\r\n" + 
+				", a.ZIDUAN_MC_Y\r\n" + 
+				", a.ZHI\r\n" + 
+				", a.ZHI as YUANSHI_ZHI\r\n" + 
+				", a.DANWEI\r\n" + 
+				", a.INDATE\r\n" + 
+				", a.MODIFY_TIME\r\n" + 
+				", a.MARK_ID\r\n" + 
+				", a.EXTEND_ID1\r\n" + 
+				", a.EXTEND_ID2\r\n" + 
+				", a.EXTEND_ID3\r\n" + 
+				", a.EXTEND_ID4\r\n" + 
+				", a.EXTEND_ID5\r\n" + 
+				", a.BIAOTI_ID\r\n" + 
+				", a.YEMA\r\n" + 
+				",'0' as IsNew\r\n" + 
+				", b.num as zc_num\r\n" + 
+				", c.num as lr_num\r\n" + 
+				", d.num as xj_num\r\n" + 
+				", a.GONGSI_MC\r\n" + 
+				", a.DANYUANGE_ID\r\n" + 
+				", '' as YS_DANWEI\r\n" + 
+				"FROM CW_CAIWU_YIXING a\r\n" + 
+				"LEFT JOIN(\r\n" + 
+				"SELECT wenjian_id ,count(DISTINCT BAOGAO_MC) as num from CW_CAIWU_YIXING\r\n" + 
+				"where BAOGAO_MC like '%资产负债%'\r\n" + 
+				"AND\r\n" + 
+				"WENJIAN_ID='8423504407528448'\r\n" + 
+				"GROUP BY wenjian_id\r\n" + 
+				") b\r\n" + 
+				"on a.BAOGAO_MC like '%资产负债%'\r\n" + 
+				"and a.WENJIAN_ID=b.WENJIAN_ID\r\n" + 
+				"LEFT JOIN(\r\n" + 
+				"SELECT wenjian_id ,count(DISTINCT BAOGAO_MC) as num from CW_CAIWU_YIXING\r\n" + 
+				"where BAOGAO_MC like '%利润%'\r\n" + 
+				"AND\r\n" + 
+				"WENJIAN_ID='8423504407528448'\r\n" + 
+				"GROUP BY wenjian_id\r\n" + 
+				") c\r\n" + 
+				"on a.BAOGAO_MC like '%利润%'\r\n" + 
+				"and a.WENJIAN_ID=c.WENJIAN_ID\r\n" + 
+				"LEFT JOIN(\r\n" + 
+				"SELECT wenjian_id ,count(DISTINCT BAOGAO_MC) as num from CW_CAIWU_YIXING\r\n" + 
+				"where BAOGAO_MC like '%现金流量%'\r\n" + 
+				"AND\r\n" + 
+				"WENJIAN_ID='8423504407528448'\r\n" + 
+				"GROUP BY wenjian_id\r\n" + 
+				") d\r\n" + 
+				"on a.BAOGAO_MC like '%现金流量%'\r\n" + 
+				"and a.WENJIAN_ID=d.WENJIAN_ID\r\n" + 
+				"\r\n" + 
+				"where \r\n" + 
+				"\r\n" + 
+				"a.WENJIAN_ID='8423504407528448'\r\n" + 
+				"\r\n" + 
+				"and  a.YEMA>=50\r\n" + 
+				"and a.BAOGAO_MC not like '%最近一年%'\r\n" + 
+				") as test_table";
+		Dataset<Row> dfwhere = spark.read().format("jdbc").option("url", url).option("dbtable", sql).load();
+		dfwhere.show();
+		
 		spark.stop();
 		return "OK";
 	}
