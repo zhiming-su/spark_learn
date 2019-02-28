@@ -43,7 +43,6 @@ public class SparkSql2 {
 		//Dataset<Row> jrList = spark.createDataFrame(info, Students.class);
 		//spark.cre
 		
-		
 		JavaRDD<Row> jr = jsc.parallelize(info).map(line->{
 			return RowFactory.create(line.split(",")[0],line.split(",")[1],line.split(",")[2]);
 		});

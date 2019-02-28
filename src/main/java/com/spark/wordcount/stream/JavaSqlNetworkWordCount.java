@@ -67,6 +67,7 @@ public final class JavaSqlNetworkWordCount {
     JavaDStream<String> words = lines.flatMap(x -> Arrays.asList(SPACE.split(x)).iterator());
 
     // Convert RDDs of the words DStream to DataFrame and run SQL query
+    
     words.foreachRDD((rdd, time) -> {
       SparkSession spark = JavaSparkSessionSingleton.getInstance(rdd.context().getConf());
 
