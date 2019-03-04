@@ -63,7 +63,7 @@ public final class JavaDirectKafkaWordCount {
     kafkaParams.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
     kafkaParams.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
     kafkaParams.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-
+    
     // Create direct kafka stream with brokers and topics
     JavaInputDStream<ConsumerRecord<String, String>> messages = KafkaUtils.createDirectStream(
         jssc,

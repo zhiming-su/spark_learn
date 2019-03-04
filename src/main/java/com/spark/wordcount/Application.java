@@ -11,6 +11,7 @@ import com.spark.wordcount.controller.SparkETLJob;
 import com.spark.wordcount.controller.SparkSql;
 import com.spark.wordcount.controller.SparkSqlUDAF_Use;
 import com.spark.wordcount.controller.SparkSqlUV;
+import com.spark.wordcount.controller.sparkSqlRDD;
 import com.spark.wordcount.stream.JavaDirectKafkaWordCount;
 import com.spark.wordcount.stream.JavaStreamingWindow;
 import com.spark.wordcount.stream.JavaUpdateStateByKeyStream;
@@ -38,7 +39,8 @@ public class Application {
 		//SparkETLJob.etlJob();
 		//JavaDirectKafkaWordCount.kafkaTest();
 		//JavaUpdateStateByKeyStream.updateStateByKeyTest1();
-		JavaStreamingWindow.myWindow();
+		//JavaStreamingWindow.myWindow();
+		sparkSqlRDD.mytestRDD();
 		//SparkSecondSort.secondSort();
 	}
 }
