@@ -19,7 +19,7 @@ public class sparkSqlRDD {
 		Dataset<Row> dfwhere = spark.read().format("jdbc").option("url", url).option("dbtable", sql).load();
 		//dfwhere.cache();
 		
-		dfwhere.filter(dfwhere.col("YEMA").equalTo("128_1")).show(522);;
+		dfwhere.filter(dfwhere.col("YEMA").equalTo("128_1")).show(522);
 		//dfwhere.show();
 		
 		spark.stop();

@@ -12,6 +12,7 @@ import com.spark.wordcount.controller.SparkSql;
 import com.spark.wordcount.controller.SparkSqlUDAF_Use;
 import com.spark.wordcount.controller.SparkSqlUV;
 import com.spark.wordcount.controller.sparkSqlRDD;
+import com.spark.wordcount.controller.sparkSqlWebSelect;
 import com.spark.wordcount.stream.JavaDirectKafkaWordCount;
 import com.spark.wordcount.stream.JavaStreamingWindow;
 import com.spark.wordcount.stream.JavaUpdateStateByKeyStream;
@@ -40,7 +41,8 @@ public class Application {
 		//JavaDirectKafkaWordCount.kafkaTest();
 		//JavaUpdateStateByKeyStream.updateStateByKeyTest1();
 		//JavaStreamingWindow.myWindow();
-		sparkSqlRDD.mytestRDD();
+		//sparkSqlRDD.mytestRDD();
+		//sparkSqlWebSelect.mytestRDD(wenjianId);
 		//SparkSecondSort.secondSort();
 	}
 }
