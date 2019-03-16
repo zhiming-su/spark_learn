@@ -26,7 +26,7 @@ import scala.Tuple2;
 @Component
 //@RequestMapping("/test/*")
 //@RestController
-public class SparkController24 implements Serializable {
+public class SparkController25Standalone implements Serializable {
 
 	/**
 	 * schedulix_api
@@ -37,31 +37,19 @@ public class SparkController24 implements Serializable {
 	private final static long serialVersionUID = -3319354077527132831L;
 	// @RequestMapping(value="/hello",method=RequestMethod.POST)
 	//@RequestMapping(value = "/index", method = RequestMethod.GET)
-	/*
-	 * public String
-	 * bankStatement(@RequestParam(name="projectId",required=true)String
-	 * projectId,@RequestParam(name="fileId",required=true)String fileId) { return
-	 * "a"; }
-	 */
-	public String submit() throws IOException {
-		sparkConf();
 	
-			return "OK";
-		}
-		// return "Hello World";
-
 	
 	//transient static SparkConf sc;//定义配置信息对象
 	//transient static JavaSparkContext jsc ;//声明spark上下文
 
-	public  void sparkConf() throws IOException {
+	public static void main(String[] args) throws IOException {
 		//Resource rc = new ClassPathResource("/opt/spark.txt");
 		//sparkconf 配置
 		//提交到集群要把setMaster的方法删掉
 		SparkConf  sc = new SparkConf();
 		//sc = new SparkConf();
 		sc.setAppName("WordCount");
-		sc.setJars(JavaSparkContext.jarOfClass(this.getClass()));
+		//sc.setJars(JavaSparkContext.jarOfClass(this.getClass()));
 		//sc.setJars(new String[]{"/opt/spark_test/spark_sql/spark.worldcount-0.0.1-SNAPSHOT.jar"});
 		//sc.setMaster("local");
 		

@@ -21,9 +21,7 @@ import org.apache.spark.sql.types.DataTypes;
 import org.apache.spark.sql.types.StructField;
 import org.apache.spark.sql.types.StructType;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+
 
 /**
  * 这里主要对比Dataset和DataFrame，因为Dataset和DataFrame拥有完全相同的成员函数，区别只是每一行的数据类型不同
@@ -45,7 +43,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @Component
-@RestController
+//@RestController
 public class SparkSql {
 
 	public static void dataFrameFunJson() {
@@ -113,7 +111,7 @@ public class SparkSql {
 
 	// mysql数据源
 	// validation-api-1.1.0.Final.jar 与spark的包相冲突
-	@RequestMapping(value = "/spark_mysql", method = RequestMethod.GET)
+	//@RequestMapping(value = "/spark_mysql", method = RequestMethod.GET)
 	public static String dataFrameFunMysql() throws AnalysisException {
 
 		SparkSession spark = SparkSession.builder().appName("Java Spark SQL basic example").master("local")

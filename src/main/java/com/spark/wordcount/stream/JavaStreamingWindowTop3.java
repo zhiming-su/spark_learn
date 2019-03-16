@@ -7,6 +7,7 @@ import java.util.List;
 import static org.apache.spark.sql.functions.*;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
+import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.RowFactory;
@@ -24,9 +25,11 @@ import scala.Tuple2;
 
 public class JavaStreamingWindowTop3 {
 
-	public static void main(String[] args) throws InterruptedException {
+	public static  void stream() throws InterruptedException {
 		// TODO Auto-generated method stub
-		SparkConf sc = new SparkConf().setAppName("hotwidowTop3").setMaster("local[2]");
+		SparkConf sc = new SparkConf().setAppName("hotwidowTop3")
+				.setJars(new String[]{"/opt/spark_test/spark_sql/spark.worldcount-0.0.1-SNAPSHOT.jar"});
+				//.setJars(JavaSparkContext.jarOfClass(this.getClass()));;//.setMaster("local[2]");
 		JavaStreamingContext jsc = new JavaStreamingContext(sc, Durations.seconds(5));
 		
 		JavaReceiverInputDStream<String> jrid =jsc.socketTextStream("192.168.1.173", 12345);
@@ -50,6 +53,7 @@ public class JavaStreamingWindowTop3 {
 			SparkSession spark = MyJavaSparkSessionSingleton.getInstance(windRDD.context().getConf());
 			Dataset<Row> ds = spark.createDataFrame(rdd, schema);
 			ds.select(ds.col("lx"),ds.col("product"),ds.col("num"),row_number().over(Window.partitionBy("lx").orderBy("num")).alias("row")).show();
+			//ds.select(ds.col("lx")).show();
 			/**
 			 * +---+-------+---+---+
 | lx|product|num|row|

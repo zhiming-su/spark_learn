@@ -10,7 +10,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 
-@Component
+//@Component
 //系统初始化时，将所有ING执行的变成ERR
 @Order(value = 0)
 public class InitSystemConfig implements CommandLineRunner, EnvironmentAware {
