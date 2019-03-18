@@ -23,30 +23,14 @@ public class sparkSqlWebSelect  {
 	 */
 	
 
-	/*
-	 * 集群模式spark不能使用web api接口的方式，只能使用本地方式来实现，或者不使用serverlet
-	 */
-	//@RequestMapping(value = "/select", method = RequestMethod.GET)
-	/*public static String webSelect(@RequestParam(name = "id", required = true) String wenjianId) {
-		SparkConf sc = new SparkConf()
-				.setAppName("selectApp");
-				//.setMaster("spark://192.168.1.170:7077")
-				//.setJars(null);
-				//.set("spark.eventLog.enabled", "true")
-				//.setJars(new String[]{"/opt/spark_test/spark_sql/spark.worldcount-0.0.1-SNAPSHOT.jar"});
-				//.setMaster("local[2]");
-				//.setMaster("yarn-cluster");
-		SparkSession spark = SparkSession.builder().config(sc).getOrCreate();
-		mytestRDD(spark,wenjianId);
-		return "ok";
-	}*/
+	
 	
 	@RequestMapping(value = "/select", method = RequestMethod.GET)
 	//public static String mytestRDD( String wenjianId) {
 	public  String mytestRDD(@RequestParam(name = "id", required = true) String wenjianId) {
 		// TODO Auto-generated method stub
 		SparkConf sc = new SparkConf()
-				.setAppName("selectApp");
+				.setAppName("selectApp")
 				//.setJars(JavaSparkContext.jarOfClass(this.getClass()))
 		/*SparkConf sc = new SparkConf()
 				.setAppName("selectApp")
@@ -55,7 +39,7 @@ public class sparkSqlWebSelect  {
 				//.setJars(null);
 				//.set("spark.eventLog.enabled", "true")
 				//.setJars(new String[]{"/opt/spark_test/spark_sql/spark.worldcount-0.0.1-SNAPSHOT.jar"});
-				//.setMaster("local[*]");
+				.setMaster("local[*]");
 				//.setMaster("yarn-client");
 		//SparkSession spark = SparkSession.builder().config(sc).getOrCreate();
 		SparkSession spark = SparkSession.builder().config(sc).getOrCreate();
